@@ -1,5 +1,5 @@
-Pixel Manipulation
-==================
+GBA Development
+===============
 
 ## Overview
 
@@ -66,7 +66,25 @@ Pixel Manipulation
 	+ WaitVBlank() is called when the "A" button IS NOT pressed.
 	+ WaitVBlank() when the "DOWN" button IS pressed and held down.
 	+ Results are: WaitVBlank() is called once when both buttons are NOT pressed, or both buttons ARE pressed; WaitVBlank() is not called at all when only the 'A' button is pressed;  WaitVBlank() is called twice when only the 'DOWN' button is pressed.  Pressing these keys will affect both the FRAMES and FPS counter.
-	+ Note: it is possible to obtain 600,000+ FPS with optimizer set to -o0, and 2,000,000+ FPS with the optimizer set to -o2.
+	+ Note: it is possible to obtain 600,000+ FPS with optimizer set to -o0, and 2,000,000+ FPS with the optimizer set to -o2. But I didn't set those flags.
+
+![Tile Mode GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/tile_mode.png)	
+	
+6.Tile Mode
++ Video mode set to 2 and background enabled 2
++ Draw_PaletteInit function: loads the palette into memory. 
++ Draw_BGTileInit function: sets up the control register for background 2 and load the tile image and tile map data provided. The control register is set to a standard 256 color palette, with a rotational background size 128x128 (16x16 tiles), and the wrap around (screen over) bit set.
++ Math_M2Identity, Math_M2Identity_FP_24_8, and Math_M2Identity_FP_16_16 functions: These functions take in a 2D matrix and convert it into an identity matrix. One is fixed point 24.8 (24 bits for the signed bit and integer and 8 bits for the fraction) and another is fixed point 16.16. So for every value set in the matrix, is bit shifted it to the left by 8 and 16 respectively. 
++ Math_M2TranslationSet function: takes in a translation data and set it to a matrix.
++ Math_M2ScaleSet_FP_24_8 function: takes in fixed point 24.8 scaling data and set it to a matrix. This function create a matrix that is of fixed point 24.8 format (allowing more range for scale values).
++ Math_M2RotationSet_FP_16_16 function: takes in rotation data and set it to a matrix. Creates a matrix that is of fixed point 16.16 format (allowing more precision for the fractional rotation).
++ Math_M2Mult function is used to calculate a resulting matrix. Multiplying in the following order: rotation, then scale, and lastly translation.
++ Write a Draw_BGTransformation function that will copy the matrix data into the six transformation registers for background 2 like so: 
++ Controls:
+	+ “UP”/“DOWN”/“LEFT”/“RIGHT” buttons translate the background. 
+	+ “A”/“B” scale the background. 
+	+ “L”/“R” rotate the background. 
+	+ “START” resets the background.
 
 ## Built With
 

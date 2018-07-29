@@ -113,11 +113,19 @@ KEY_LEFT pressed – subtracts 100 from samplesPerSecond
 ![Numbers GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/numbers.png)
 
 ### 8.Numbers
-+ Thi folder contains a visual representation of the Signed Magnitude, One’s Compliment and Two’s Compliment numbers. Displaying on the GBA screen in binary form the integer values -128 to +127 for the three number formats, each with a different random color scheme.
++ This folder contains a visual representation of the Signed Magnitude, One’s Compliment and Two’s Compliment numbers. Displaying on the GBA screen in binary form the integer values -128 to +127 for the three number formats, each with a different random color scheme.
 + Controls:
 	+ "UP"/"DOWN":			+10/-10 to value.
 	+ "LEFT"/"RIGHT":		+1/-1 to value.
 
+	
+![Ninja GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/rain_ninja.png)
+
+### 9.Ninja project: applying all together
++ This small project applies some of the learnings from previous projects. The sprite tile image data for four frames of animation is loaded only once into video memory. The animation is generated changing the sprite data’s tile index. The sprite uses the 1st frame for standing, and when input is held down.
++ The sprite is flipped horizontally based on the direction it is running in.
++ Controls:
+	+ "LEFT"/"RIGHT":		move the ninja left/right and rotate the rain.
 
 ## Built With
 
@@ -139,4 +147,4 @@ This project is licensed under the MIT license - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 * Full Sail University - Game Development Department
-* Richard E. Arndt - [email](volvoom@gmail.com)
+* Richard E. Arndt

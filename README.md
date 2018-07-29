@@ -48,7 +48,25 @@ Pixel Manipulation
 + OAM memory buffer is initialized with all sprites disabled (setting all attribute bits to zero). 
 + Sprite #0 is initialized with rotation enabled and double sized, 256 color palette options.
 + Sprite’s scale is set to 1<<8, the degree to 0, and the X and Y translation values to 0 (These variables are controlled by key input).
-+ Controls: “UP”/“DOWN”/“LEFT”/“RIGHT” buttons translates the sprite. “L”/“R” rotates the sprite. “L”/“R” will scale the sprite. "A"/"B" adds alpha channel. “START” button resets the sprite.
++ Controls: 
+	+ “UP”/“DOWN”/“LEFT”/“RIGHT” buttons translates the sprite. 
+	+ “L”/“R” rotates the sprite. 
+	+ While the “SELECT” button is held down pressing “L”/“R” to scales the sprite.
+	+ "A" adds alpha channel and "B" adds a mosaic effect. 
+	+ “START” button resets the sprite.
+	
+![Timers GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/timers.png)
+	
+5.Timers and Interrupts
++ Video mode is set to mode 0 and background 0 (BG0).
++ Interrupt service routine is defined on file named "isr.arm.c" to count the number of vertical blank interrupts and number of seconds that have elapsed since starting the program. The counter parameters are global and volatile in order to be share between the main() the ISR.
++ Implemented string print() method to set the appropriate character font tile index into the appropriate position in the tile map.
++ The SECONDS and FPS counters only are updated to the video screen once a second in order to minimize the work being done by the main() executive loop.
++ Controls:
+	+ WaitVBlank() is called when the "A" button IS NOT pressed.
+	+ WaitVBlank() when the "DOWN" button IS pressed and held down.
+	+ Results are: WaitVBlank() is called once when both buttons are NOT pressed, or both buttons ARE pressed; WaitVBlank() is not called at all when only the 'A' button is pressed;  WaitVBlank() is called twice when only the 'DOWN' button is pressed.  Pressing these keys will affect both the FRAMES and FPS counter.
+	+ Note: it is possible to obtain 600,000+ FPS with optimizer set to -o0, and 2,000,000+ FPS with the optimizer set to -o2.
 
 ## Built With
 

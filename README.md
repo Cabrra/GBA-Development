@@ -122,7 +122,10 @@ KEY_LEFT pressed – subtracts 100 from samplesPerSecond
 ![Ninja GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/rain_ninja.png)
 
 ### 9.Ninja project: applying all together
-+ This small project applies some of the learnings from previous projects. The sprite tile image data for four frames of animation is loaded only once into video memory. The animation is generated changing the sprite data’s tile index. The sprite uses the 1st frame for standing, and when input is held down.
++ This small project applies some of the learnings from previous projects.
++ The sprite tile image data is loaded only once into video memory. 
++ The animation is generated changing the sprite data’s tile index. 
++ The sprite uses the 1st frame for standing, and when input is held down.
 + The sprite is flipped horizontally based on the direction it is running in.
 + Controls:
 	+ "LEFT"/"RIGHT":		move the ninja left/right and rotate the rain.

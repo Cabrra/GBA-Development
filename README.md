@@ -5,7 +5,7 @@ GBA Development
 
 ![Hello World GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/hello_world.png)
 
-1. Hello World & buffered input
+### 1. Hello World & buffered input
 + Unsigned short pointer to memory address 0x04000000: this is the display control register bit flags are located. Flags: 0x3 for mode 3 and 0x400 for background 2. 
 + Unsigned short pointer to memory address 0x06000000: it points to the beginning of the pixel map which will be displayed on the screen. Each pixel is represented by a 16-bit number for a 15-bit color value. 
 + Volatile unsigned short pointer to memory address 0x04000130: it is volatile because the hardware changes these bits. Used to check the button states. 
@@ -15,7 +15,7 @@ GBA Development
 
 ![Bitmaps GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/bitmaps.png)
 
-2.Bitmaps
+### 2.Bitmaps
 + Mode 3 and background 2. Memory allocated in EWRAM (EXRAM) for the back buffer.
 + Draw_Clear function: clears the back buffer to a particular color in a for loop. 
 + Draw_Pixel function: Plots a pixel anywhere on the back buffer (used to draw the bitmap). 
@@ -30,7 +30,7 @@ GBA Development
 	
 ![Backgrounds GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/backgrounds.png)
 
-3.Backgrounds
+### 3.Backgrounds
 + The display control register is in mode 0 (value 0x0). 
 + “gfx2gba.exe” is used to convert the bitmaps to palette, image and map data. Select “External Tools->Command Prompt” and navigate to your project folder. Once there, type “gfx2gba –fsrc –m –mm –t8 –pback.pal back.bmp back1.bmp”. Read “gfx2gba-readme.txt” to learn more. 
 + Draw_PaletteInit function: copies the palette data to the appropriate palette memory address (0x05000000). 
@@ -42,7 +42,7 @@ GBA Development
 
 ![Fireball GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/fireball.png)
 
-4.Fireball
+### 4.Fireball
 + OR-ing the display control register with 0x40 sets the 1D sprite image data flag. OR-ing 0x1000 to set the OAM memory enable flag.
 + Implemented a method to DMA the raw sprite palette data into sprite palette video memory area located at 0x05000200.  
 + Implemented a method to DMA the raw sprite tile data into sprite tile video memory area located at 0x06010000.
@@ -64,7 +64,7 @@ GBA Development
 	
 ![Timers GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/timers.png)
 	
-5.Timers and Interrupts
+### 5.Timers and Interrupts
 + Video mode is set to mode 0 and background 0 (BG0).
 + Interrupt service routine is defined on file named "isr.arm.c" to count the number of vertical blank interrupts and number of seconds that have elapsed since starting the program. The counter parameters are global and volatile in order to be share between the main() the ISR.
 + Implemented string print() method to set the appropriate character font tile index into the appropriate position in the tile map.
@@ -78,7 +78,7 @@ GBA Development
 	
 ![Tile Mode GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/tile_mode.png)	
 	
-6.Tile Mode
+### 6.Tile Mode
 + Video mode set to 2 and background enabled 2
 + Draw_PaletteInit function: loads the palette into memory. 
 + Draw_BGTileInit function: sets up the control register for background 2 and load the tile image and tile map data provided. The control register is set to a standard 256 color palette, with a rotational background size 128x128 (16x16 tiles), and the wrap around (screen over) bit set.
@@ -97,7 +97,7 @@ GBA Development
 
 ![Sound GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/direct_sound.png)
 
-7.Direct Sound
+### 7.Direct Sound
 + "wav2gba.exe" To generate the ‘C’ audio data file, use the following on the cmd: 
 	> "wav2gba  yourSoundTrackName.wav  yourSoundTracName.c  yourSoundTrackName"
 + Controls:
@@ -110,8 +110,13 @@ KEY_RIGHT pressed – adds 100 to samplesPerSecond
 KEY_LEFT pressed – subtracts 100 from samplesPerSecond
 
 
+![Numbers GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/numbers.png)
 
-8.
+### 8.Numbers
++ Thi folder contains a visual representation of the Signed Magnitude, One’s Compliment and Two’s Compliment numbers. Displaying on the GBA screen in binary form the integer values -128 to +127 for the three number formats, each with a different random color scheme.
++ Controls:
+	+ "UP"/"DOWN":			+10/-10 to value.
+	+ "LEFT"/"RIGHT":		+1/-1 to value.
 
 
 ## Built With

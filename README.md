@@ -9,7 +9,9 @@ GBA Development
 + Unsigned short pointer to memory address 0x04000000: this is the display control register bit flags are located. Flags: 0x3 for mode 3 and 0x400 for background 2. 
 + Unsigned short pointer to memory address 0x06000000: it points to the beginning of the pixel map which will be displayed on the screen. Each pixel is represented by a 16-bit number for a 15-bit color value. 
 + Volatile unsigned short pointer to memory address 0x04000130: it is volatile because the hardware changes these bits. Used to check the button states. 
-+ Controls: “UP”/“DOWN”/“LEFT”/“RIGHT”/"L"/"R"/"START"/"SELECT" enables/disables the letters.
++ Controls: 
+	+ “UP”/“DOWN”/“LEFT”/“RIGHT”/"L"/"R"/"START"/"SELECT" enables/disables the letters.
+
 
 ![Bitmaps GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/bitmaps.png)
 
@@ -25,6 +27,7 @@ GBA Development
 	+ When holding down the “A” button, the clear function gets faster (generates significantly higher frame rate).
 	+ When holding "Pause" button, the mode switches from 3 to 5.
 
+	
 ![Backgrounds GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/backgrounds.png)
 
 3.Backgrounds
@@ -33,7 +36,9 @@ GBA Development
 + Draw_PaletteInit function: copies the palette data to the appropriate palette memory address (0x05000000). 
 + Draw_BGTileInit function: sets up one background at a time. The data needs to be loaded within a 64KB chunk of memory starting at a hardware-defined offset. The copy of the tile image data needs to start at one of four 16KB "character" block offsets. The copy of the tile map data needs to start at one of thirty-two 2KB "screen" block offsets. 
 + Draw_BGScroll function: updates the scroll registers starting at memory address 0x04000010. The three backgrounds move at different velocities making a parallax effect.   
-+ Controls: “LEFT”/“RIGHT” buttons move the backgrounds.
++ Controls: 
+	+ “LEFT”/“RIGHT” buttons move the backgrounds.
+
 
 ![Fireball GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/fireball.png)
 
@@ -49,11 +54,13 @@ GBA Development
 + Sprite #0 is initialized with rotation enabled and double sized, 256 color palette options.
 + Sprite’s scale is set to 1<<8, the degree to 0, and the X and Y translation values to 0 (These variables are controlled by key input).
 + Controls: 
-	+ “UP”/“DOWN”/“LEFT”/“RIGHT” buttons translates the sprite. 
-	+ “L”/“R” rotates the sprite. 
+	+ “UP”/“DOWN”/“LEFT”/“RIGHT” 		buttons translates the sprite. 
+	+ “L”/“R” 							rotates the sprite. 
+	+ "A" 								adds alpha channel
+	+ "B" 								adds a mosaic effect. 
+	+ “START” 							button resets the sprite.
 	+ While the “SELECT” button is held down pressing “L”/“R” to scales the sprite.
-	+ "A" adds alpha channel and "B" adds a mosaic effect. 
-	+ “START” button resets the sprite.
+	
 	
 ![Timers GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/timers.png)
 	
@@ -68,6 +75,7 @@ GBA Development
 	+ Results are: WaitVBlank() is called once when both buttons are NOT pressed, or both buttons ARE pressed; WaitVBlank() is not called at all when only the 'A' button is pressed;  WaitVBlank() is called twice when only the 'DOWN' button is pressed.  Pressing these keys will affect both the FRAMES and FPS counter.
 	+ Note: it is possible to obtain 600,000+ FPS with optimizer set to -o0, and 2,000,000+ FPS with the optimizer set to -o2. But I didn't set those flags.
 
+	
 ![Tile Mode GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/tile_mode.png)	
 	
 6.Tile Mode
@@ -81,10 +89,30 @@ GBA Development
 + Math_M2Mult function is used to calculate a resulting matrix. Multiplying in the following order: rotation, then scale, and lastly translation.
 + Write a Draw_BGTransformation function that will copy the matrix data into the six transformation registers for background 2 like so: 
 + Controls:
-	+ “UP”/“DOWN”/“LEFT”/“RIGHT” buttons translate the background. 
-	+ “A”/“B” scale the background. 
-	+ “L”/“R” rotate the background. 
-	+ “START” resets the background.
+	+ “UP”/“DOWN”/“LEFT”/“RIGHT” 	buttons translate the background. 
+	+ “A”/“B” 						scale the background. 
+	+ “L”/“R” 						rotate the background. 
+	+ “START” 						resets the background.
+	
+
+![Sound GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/direct_sound.png)
+
+7.Direct Sound
++ "wav2gba.exe" To generate the ‘C’ audio data file, use the following on the cmd: 
+	> "wav2gba  yourSoundTrackName.wav  yourSoundTracName.c  yourSoundTrackName"
++ Controls:
+	+ "R": 		stops playing sound
+	+ "L": 		starts or restarts playing sound
+	+ "START": 	sets samplesPerSecond to 8000
+	+ "UP": 	adds 1000 to samplesPerSecond
+	+ "DOWN": 	subtracts 1000 from samplesPerSecond
+KEY_RIGHT pressed – adds 100 to samplesPerSecond
+KEY_LEFT pressed – subtracts 100 from samplesPerSecond
+
+
+
+8.
+
 
 ## Built With
 

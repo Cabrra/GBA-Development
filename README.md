@@ -40,7 +40,7 @@ GBA Development
 	+ “LEFT”/“RIGHT” buttons move the backgrounds.
 
 
-![Fireball GBA](htthttps://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/fireball.png?token=AI_RbfSUDRYWv1AicdLD73xRT9hiFWwgks5bo5sWwA%3D%3D)
+![Fireball GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/fireball.png?token=AI_RbfSUDRYWv1AicdLD73xRT9hiFWwgks5bo5sWwA%3D%3D)
 
 ### 4.Fireball
 + OR-ing the display control register with 0x40 sets the 1D sprite image data flag. OR-ing 0x1000 to set the OAM memory enable flag.

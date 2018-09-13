@@ -3,17 +3,17 @@ GBA Development
 
 ## Overview
 
-![Hello World GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/hello_world.png)
+![Hello World GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/hello_world.png)
 
 ### 1. Hello World & buffered input
 + Unsigned short pointer to memory address 0x04000000: this is the display control register bit flags are located. Flags: 0x3 for mode 3 and 0x400 for background 2. 
 + Unsigned short pointer to memory address 0x06000000: it points to the beginning of the pixel map which will be displayed on the screen. Each pixel is represented by a 16-bit number for a 15-bit color value. 
 + Volatile unsigned short pointer to memory address 0x04000130: it is volatile because the hardware changes these bits. Used to check the button states. 
 + Controls: 
-	+ ìUPî/ìDOWNî/ìLEFTî/ìRIGHTî/"L"/"R"/"START"/"SELECT" enables/disables the letters.
+	+ ‚ÄúUP‚Äù/‚ÄúDOWN‚Äù/‚ÄúLEFT‚Äù/‚ÄúRIGHT‚Äù/"L"/"R"/"START"/"SELECT" enables/disables the letters.
 
 
-![Bitmaps GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/bitmaps.png)
+![Bitmaps GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/bitmaps.png)
 
 ### 2.Bitmaps
 + Mode 3 and background 2. Memory allocated in EWRAM (EXRAM) for the back buffer.
@@ -23,46 +23,46 @@ GBA Development
 + Draw_Present function: copies the entire back buffer to the front buffer during vblank to avoid visual artifacts.
 + Screen is set to a different color every frame; starting with color=0, and then it increments by +8 on every frame. 
 + Controls: 
-	+ When holding down the ìDOWNî button, the present function gets faster (no screen artifacts because is presented fast enough during vertical blank). 
-	+ When holding down the ìAî button, the clear function gets faster (generates significantly higher frame rate).
+	+ When holding down the ‚ÄúDOWN‚Äù button, the present function gets faster (no screen artifacts because is presented fast enough during vertical blank). 
+	+ When holding down the ‚ÄúA‚Äù button, the clear function gets faster (generates significantly higher frame rate).
 	+ When holding "Pause" button, the mode switches from 3 to 5.
 
 	
-![Backgrounds GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/backgrounds.png)
+![Backgrounds GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/backgrounds.png)
 
 ### 3.Backgrounds
 + The display control register is in mode 0 (value 0x0). 
-+ ìgfx2gba.exeî is used to convert the bitmaps to palette, image and map data. Select ìExternal Tools->Command Promptî and navigate to your project folder. Once there, type ìgfx2gba ñfsrc ñm ñmm ñt8 ñpback.pal back.bmp back1.bmpî. Read ìgfx2gba-readme.txtî to learn more. 
++ ‚Äúgfx2gba.exe‚Äù is used to convert the bitmaps to palette, image and map data. Select ‚ÄúExternal Tools->Command Prompt‚Äù and navigate to your project folder. Once there, type ‚Äúgfx2gba ‚Äìfsrc ‚Äìm ‚Äìmm ‚Äìt8 ‚Äìpback.pal back.bmp back1.bmp‚Äù. Read ‚Äúgfx2gba-readme.txt‚Äù to learn more. 
 + Draw_PaletteInit function: copies the palette data to the appropriate palette memory address (0x05000000). 
 + Draw_BGTileInit function: sets up one background at a time. The data needs to be loaded within a 64KB chunk of memory starting at a hardware-defined offset. The copy of the tile image data needs to start at one of four 16KB "character" block offsets. The copy of the tile map data needs to start at one of thirty-two 2KB "screen" block offsets. 
 + Draw_BGScroll function: updates the scroll registers starting at memory address 0x04000010. The three backgrounds move at different velocities making a parallax effect.   
 + Controls: 
-	+ ìLEFTî/ìRIGHTî buttons move the backgrounds.
+	+ ‚ÄúLEFT‚Äù/‚ÄúRIGHT‚Äù buttons move the backgrounds.
 
 
-![Fireball GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/fireball.png)
+![Fireball GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/fireball.png)
 
 ### 4.Fireball
 + OR-ing the display control register with 0x40 sets the 1D sprite image data flag. OR-ing 0x1000 to set the OAM memory enable flag.
 + Implemented a method to DMA the raw sprite palette data into sprite palette video memory area located at 0x05000200.  
 + Implemented a method to DMA the raw sprite tile data into sprite tile video memory area located at 0x06010000.
 + Implemented a method to DMA the OAM memory buffer to OAM video memory area located at 0x7000000. This function is called during program initialization and on every frame during the v-blank period.
-+ Implemented a method to change the sprite X and Y position in the OAM memory buffer. This should be updating attributes 0 and 1 of the spriteís data.
++ Implemented a method to change the sprite X and Y position in the OAM memory buffer. This should be updating attributes 0 and 1 of the sprite‚Äôs data.
 + Implemented a method to calculate and set the rotational and scaling data  (PA, PB, PC, PD) of a rotational instance within the OAM memory buffer.
 + OAM memory buffer controls the sprite's rotational data.
 + OAM memory buffer is initialized with all sprites disabled (setting all attribute bits to zero). 
 + Sprite #0 is initialized with rotation enabled and double sized, 256 color palette options.
-+ Spriteís scale is set to 1<<8, the degree to 0, and the X and Y translation values to 0 (These variables are controlled by key input).
++ Sprite‚Äôs scale is set to 1<<8, the degree to 0, and the X and Y translation values to 0 (These variables are controlled by key input).
 + Controls: 
-	+ ìUPî/ìDOWNî/ìLEFTî/ìRIGHTî 		buttons translates the sprite. 
-	+ ìLî/ìRî 							rotates the sprite. 
+	+ ‚ÄúUP‚Äù/‚ÄúDOWN‚Äù/‚ÄúLEFT‚Äù/‚ÄúRIGHT‚Äù 		buttons translates the sprite. 
+	+ ‚ÄúL‚Äù/‚ÄúR‚Äù 							rotates the sprite. 
 	+ "A" 								adds alpha channel
 	+ "B" 								adds a mosaic effect. 
-	+ ìSTARTî 							button resets the sprite.
-	+ While the ìSELECTî button is held down pressing ìLî/ìRî to scales the sprite.
+	+ ‚ÄúSTART‚Äù 							button resets the sprite.
+	+ While the ‚ÄúSELECT‚Äù button is held down pressing ‚ÄúL‚Äù/‚ÄúR‚Äù to scales the sprite.
 	
 	
-![Timers GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/timers.png)
+![Timers GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/timers.png)
 	
 ### 5.Timers and Interrupts
 + Video mode is set to mode 0 and background 0 (BG0).
@@ -76,7 +76,7 @@ GBA Development
 	+ Note: it is possible to obtain 600,000+ FPS with optimizer set to -o0, and 2,000,000+ FPS with the optimizer set to -o2. But I didn't set those flags.
 
 	
-![Tile Mode GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/tile_mode.png)	
+![Tile Mode GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/tile_mode.png)	
 	
 ### 6.Tile Mode
 + Video mode set to 2 and background enabled 2
@@ -89,16 +89,16 @@ GBA Development
 + Math_M2Mult function is used to calculate a resulting matrix. Multiplying in the following order: rotation, then scale, and lastly translation.
 + Write a Draw_BGTransformation function that will copy the matrix data into the six transformation registers for background 2 like so: 
 + Controls:
-	+ ìUPî/ìDOWNî/ìLEFTî/ìRIGHTî 	buttons translate the background. 
-	+ ìAî/ìBî 						scale the background. 
-	+ ìLî/ìRî 						rotate the background. 
-	+ ìSTARTî 						resets the background.
+	+ ‚ÄúUP‚Äù/‚ÄúDOWN‚Äù/‚ÄúLEFT‚Äù/‚ÄúRIGHT‚Äù 	buttons translate the background. 
+	+ ‚ÄúA‚Äù/‚ÄúB‚Äù 						scale the background. 
+	+ ‚ÄúL‚Äù/‚ÄúR‚Äù 						rotate the background. 
+	+ ‚ÄúSTART‚Äù 						resets the background.
 	
 
-![Sound GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/direct_sound.png)
+![Sound GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/direct_sound.png)
 
 ### 7.Direct Sound
-+ "wav2gba.exe" To generate the ëCí audio data file, use the following on the cmd: 
++ "wav2gba.exe" To generate the ‚ÄòC‚Äô audio data file, use the following on the cmd: 
 	> "wav2gba  yourSoundTrackName.wav  yourSoundTracName.c  yourSoundTrackName"
 + Controls:
 	+ "R": 		stops playing sound
@@ -106,25 +106,25 @@ GBA Development
 	+ "START": 	sets samplesPerSecond to 8000
 	+ "UP": 	adds 1000 to samplesPerSecond
 	+ "DOWN": 	subtracts 1000 from samplesPerSecond
-KEY_RIGHT pressed ñ adds 100 to samplesPerSecond
-KEY_LEFT pressed ñ subtracts 100 from samplesPerSecond
+KEY_RIGHT pressed ‚Äì adds 100 to samplesPerSecond
+KEY_LEFT pressed ‚Äì subtracts 100 from samplesPerSecond
 
 
-![Numbers GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/numbers.png)
+![Numbers GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/numbers.png)
 
 ### 8.Numbers
-+ This folder contains a visual representation of the Signed Magnitude, Oneís Compliment and Twoís Compliment numbers. Displaying on the GBA screen in binary form the integer values -128 to +127 for the three number formats, each with a different random color scheme.
++ This folder contains a visual representation of the Signed Magnitude, One‚Äôs Compliment and Two‚Äôs Compliment numbers. Displaying on the GBA screen in binary form the integer values -128 to +127 for the three number formats, each with a different random color scheme.
 + Controls:
 	+ "UP"/"DOWN":			+10/-10 to value.
 	+ "LEFT"/"RIGHT":		+1/-1 to value.
 
 	
-![Ninja GBA](https://github.com/Cabrra/cabrra.github.io/blob/master/Images/rain_ninja.png)
+![Ninja GBA](https://github.com/Cabrra/cabrra.github.io/raw/master/Images/rain_ninja.png)
 
 ### 9.Ninja project: applying all together
 + This small project applies some of the learnings from previous projects.
 + The sprite tile image data is loaded only once into video memory. 
-+ The animation is generated changing the sprite dataís tile index. 
++ The animation is generated changing the sprite data‚Äôs tile index. 
 + The sprite uses the 1st frame for standing, and when input is held down.
 + The sprite is flipped horizontally based on the direction it is running in.
 + Controls:

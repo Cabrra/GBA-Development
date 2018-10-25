@@ -3,7 +3,7 @@ GBA Development
 
 ## Overview
 
-![Hello World GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/hello_world.png?token=AI_RbesgbD_eb6ApIngqA__Bg8jirQj7ks5bo5sPwA%3D%3D)
+![Hello World GBA](/Images/hello_world.png)
 
 ### 1. Hello World & buffered input
 + Unsigned short pointer to memory address 0x04000000: this is the display control register bit flags are located. Flags: 0x3 for mode 3 and 0x400 for background 2. 
@@ -13,7 +13,7 @@ GBA Development
 	+ “UP”/“DOWN”/“LEFT”/“RIGHT”/"L"/"R"/"START"/"SELECT" enables/disables the letters.
 
 
-![Bitmaps GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/bitmaps.png?token=AI_RbbG6B0VGvK2d_Vfnh1xrXvxqlgP2ks5bo5sSwA%3D%3D)
+![Bitmaps GBA](/Images/bitmaps.png)
 
 ### 2.Bitmaps
 + Mode 3 and background 2. Memory allocated in EWRAM (EXRAM) for the back buffer.
@@ -28,7 +28,7 @@ GBA Development
 	+ When holding "Pause" button, the mode switches from 3 to 5.
 
 	
-![Backgrounds GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/backgrounds.png?token=AI_RbcyxH0IIHVJmAWazNOvYatshEuupks5bo5sUwA%3D%3D)
+![Backgrounds GBA](/Images/backgrounds.png)
 
 ### 3.Backgrounds
 + The display control register is in mode 0 (value 0x0). 
@@ -40,7 +40,7 @@ GBA Development
 	+ “LEFT”/“RIGHT” buttons move the backgrounds.
 
 
-![Fireball GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/fireball.png?token=AI_RbfSUDRYWv1AicdLD73xRT9hiFWwgks5bo5sWwA%3D%3D)
+![Fireball GBA](/Images/fireball.png)
 
 ### 4.Fireball
 + OR-ing the display control register with 0x40 sets the 1D sprite image data flag. OR-ing 0x1000 to set the OAM memory enable flag.
@@ -62,7 +62,7 @@ GBA Development
 	+ While the “SELECT” button is held down pressing “L”/“R” to scales the sprite.
 	
 	
-![Timers GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/timers.png?token=AI_RbTauWWCfNiBiIXcVJprtHFn3CDqGks5bo5sXwA%3D%3D)
+![Timers GBA](/Images/timers.png)
 	
 ### 5.Timers and Interrupts
 + Video mode is set to mode 0 and background 0 (BG0).
@@ -76,7 +76,7 @@ GBA Development
 	+ Note: it is possible to obtain 600,000+ FPS with optimizer set to -o0, and 2,000,000+ FPS with the optimizer set to -o2. But I didn't set those flags.
 
 	
-![Tile Mode GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/tile_mode.png?token=AI_Rbc13z5GnGJ-36uDW7GLUCHASr7Wgks5bo5sZwA%3D%3D)	
+![Tile Mode GBA](/Images/tile_mode.png)	
 	
 ### 6.Tile Mode
 + Video mode set to 2 and background enabled 2
@@ -95,7 +95,7 @@ GBA Development
 	+ “START” 						resets the background.
 	
 
-![Sound GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/direct_sound.png?token=AI_RbQWgkNWE1NkaAQ51sw2v44cDpwzvks5bo5sawA%3D%3D)
+![Sound GBA](/Images/direct_sound.png)
 
 ### 7.Direct Sound
 + "wav2gba.exe" To generate the ‘C’ audio data file, use the following on the cmd: 
@@ -110,7 +110,7 @@ KEY_RIGHT pressed – adds 100 to samplesPerSecond
 KEY_LEFT pressed – subtracts 100 from samplesPerSecond
 
 
-![Numbers GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/numbers.png?token=AI_RbW8j-lswm8Tknb6be2_VSLbZ4c6Iks5bo5scwA%3D%3D)
+![Numbers GBA](/Images/numbers.png)
 
 ### 8.Numbers
 + This folder contains a visual representation of the Signed Magnitude, One’s Compliment and Two’s Compliment numbers. Displaying on the GBA screen in binary form the integer values -128 to +127 for the three number formats, each with a different random color scheme.
@@ -119,7 +119,7 @@ KEY_LEFT pressed – subtracts 100 from samplesPerSecond
 	+ "LEFT"/"RIGHT":		+1/-1 to value.
 
 	
-![Ninja GBA](https://raw.githubusercontent.com/Cabrra/cabrra.github.io/master/Images/rain_ninja.png?token=AI_RbZ4ts7GuUSQ0DvZVrrlJKiNFFkDQks5bo5sgwA%3D%3D)
+![Ninja GBA](/Images/rain_ninja.png)
 
 ### 9.Ninja project: applying all together
 + This small project applies some of the learnings from previous projects.
